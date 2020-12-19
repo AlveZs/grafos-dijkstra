@@ -55,24 +55,21 @@ int exibeMenorCaminho(int verticeAnterior[], int anterior)
 // Retorna o vértice que tem o menor caminho estimado
 int verticeComMenorDistancia(int menorDistancia[], int visitados[])
 {
+    // Declara o menor caminho encontrado e o vértice que essa distância pertence
+    int menorCaminho = INFINITO;
+    int vertice;
+
+    // Se o vértice não pertencer ao vetor de visitados e tiver uma distância menor do que a variável menorCaminho
     for (int i = 0; i < QTD_VERTICES; i++)
     {
-        // Declara o menor caminho encontrado e o vértice que essa distância pertence
-        int menorCaminho = INFINITO;
-        int vertice;
-
-        // Se o vértice não pertencer ao vetor de visitados e tiver uma distância menor do que a variável menorCaminho
-        for (int i = 0; i < QTD_VERTICES; i++)
-        {
-            if (visitados[i] == FALSE && menorDistancia[i] <= menorCaminho) {
-                // O menor caminho passa a ser essa distância e o vértice com menor caminho passa a ser ele
-                menorCaminho = menorDistancia[i];
-                vertice = i;
-            }
+        if (visitados[i] == FALSE && menorDistancia[i] <= menorCaminho) {
+            // O menor caminho passa a ser essa distância e o vértice com menor caminho passa a ser ele
+            menorCaminho = menorDistancia[i];
+            vertice = i;
         }
-        // Retorna o vértice com o menor caminho estimado
-        return vertice;
     }
+    // Retorna o vértice com o menor caminho estimado
+    return vertice;
 }
 
 // Atualiza a distância estimada para os vértices adjacentes ao passado para a função
@@ -110,13 +107,13 @@ int main()
     FILE *FD = NULL;
 
     int adjacencias[QTD_VERTICES][QTD_VERTICES];
-    int verticeOrigem = FALSE; // Vértice escolhido para dar início à busca
-    int verticeDestino = FALSE; // Vértice escolhido para finalizar à busca
-    int visitados[QTD_VERTICES]; //Vertices que foram visitados pelo algoritmo
-    int naoVisitados[QTD_VERTICES]; //Vertices que ainda não foram visitados pelo algoritmo
-    int menorDistancia[QTD_VERTICES]; //Armazena a menor distância de um vértice em relação ao vértice de origem escolhido
-    int verticeAnterior[QTD_VERTICES]; // Armazena o vértice que vem antes do vértice procurado
-    int verticeMenorDistancia = FALSE; // Vértice com menor distância da iteração atual
+    int verticeOrigem = FALSE; 
+    int verticeDestino = FALSE; 
+    int visitados[QTD_VERTICES]; 
+    int naoVisitados[QTD_VERTICES]; 
+    int menorDistancia[QTD_VERTICES]; 
+    int verticeAnterior[QTD_VERTICES]; 
+    int verticeMenorDistancia = FALSE; 
 
 
     //Limpeza de buffer da matriz
