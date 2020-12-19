@@ -111,7 +111,6 @@ int main()
     int verticeOrigem = FALSE; 
     int verticeDestino = FALSE; 
     int visitados[QTD_VERTICES]; 
-    int naoVisitados[QTD_VERTICES]; 
     int menorDistancia[QTD_VERTICES]; 
     int verticeAnterior[QTD_VERTICES]; 
     int verticeMenorDistancia = FALSE; 
