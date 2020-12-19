@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define QTD_VERTICES 6
 #define INFINITO 999
@@ -49,7 +50,7 @@ int exibeMenorCaminho(int verticeAnterior[], int anterior)
     }
     // Chama recursivamente enquanto o vértice não tiver um anterior
     exibeMenorCaminho(verticeAnterior, verticeAnterior[anterior]);
-    printf("[%d]->", verticeAnterior[anterior]);
+    printf("[%c]->", verticeAnterior[anterior]+65);
 }
 
 // Retorna o vértice que tem o menor caminho estimado
@@ -129,22 +130,73 @@ int main()
         visitados[i] = FALSE;
         verticeAnterior[i] = FALSE;
     }
+
     leituraArquivo(FD, adjacencias); //Lê o arquivo que possui as distâncias de cada vértice e armazena em memória primária na matriz de adjacências
-    for (int i = 0; i < QTD_VERTICES; i++)
+    
+    /*for (int i = 0; i < QTD_VERTICES; i++)
     {
        for (int j = 0; j < QTD_VERTICES; j++)
        {
            printf("[%d]", adjacencias[i][j]);
        }
        printf("\n");
+    }*/
+
+    char c = 65;
+    //Imprime matriz de adjacencias
+    printf("--- ALGORITMO DE DIJKSTRA ---\n\n");
+
+    printf("Matriz de Adjacencias:\n");
+    printf(" ");
+    for (int i = 0; i < QTD_VERTICES; i++)
+    {
+        printf(" %c", c + i);
     }
-    
+    printf("\n");
+
+    for (int i = 0; i < QTD_VERTICES; i++)
+    {
+        printf("%c ", c + i);
+        for (int j = 0; j < QTD_VERTICES; j++)
+        {
+            printf("%d ", adjacencias[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
     // Lê os vértices de origem e destino
+    char opc = '\0';
     printf("Escolha o vertice de origem: \n> ");
-    scanf("%d", &verticeOrigem);
+    
+    scanf("%c", &opc); //Usuario digita o caractere de um vertice para dar inicio ao algoritmo
+    getchar();         //Limpar buffer do \n
+    opc = toupper(opc);
+    if (opc < 65 || opc > 65 + QTD_VERTICES)
+    {
+        printf("\nVertice Invalido! Reinicie o programa e tente novamente.\n");
+        return -1;
+    }
+    else
+    {
+        verticeOrigem = opc-65;
+    }
 
     printf("Escolha o vertice de destino: \n> ");
-    scanf("%d", &verticeDestino);
+    opc = '\0';
+    scanf("%c", &opc); //Usuario digita o caractere de um vertice de destino
+    getchar();         //Limpar buffer do \n
+    opc = toupper(opc);
+
+    if (opc < 65 || opc > 65 + QTD_VERTICES)
+    {
+        printf("\nVertice Invalido! Reinicie o programa e tente novamente.\n");
+        return -1;
+    }
+    else
+    {
+        verticeDestino = opc-65;
+    }
 
     // Atribui 0 como a distância do vértice de origem
     menorDistancia[verticeOrigem] = 0;
@@ -169,7 +221,7 @@ int main()
 
     printf("O menor caminho eh: \n");
     exibeMenorCaminho(verticeAnterior, verticeDestino);
-    printf("[%d]\n", verticeDestino);
+    printf("[%c]\n", verticeDestino+65);
 
     return 0;
 }
