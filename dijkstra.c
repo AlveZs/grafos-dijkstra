@@ -132,15 +132,6 @@ int main()
     }
 
     leituraArquivo(FD, adjacencias); //Lê o arquivo que possui as distâncias de cada vértice e armazena em memória primária na matriz de adjacências
-    
-    /*for (int i = 0; i < QTD_VERTICES; i++)
-    {
-       for (int j = 0; j < QTD_VERTICES; j++)
-       {
-           printf("[%d]", adjacencias[i][j]);
-       }
-       printf("\n");
-    }*/
 
     char c = 65;
     //Imprime matriz de adjacencias
@@ -219,9 +210,13 @@ int main()
         );
     }
 
-    printf("O menor caminho eh: \n");
-    exibeMenorCaminho(verticeAnterior, verticeDestino);
-    printf("[%c]\n", verticeDestino+65);
+    if (menorDistancia[verticeDestino] == INFINITO) {
+       printf("Caminho inacessivel \n");
+    } else {
+        printf("O menor caminho eh: \n");
+        exibeMenorCaminho(verticeAnterior, verticeDestino);
+        printf("[%c]\n", verticeDestino+65);
+    }
 
     return 0;
 }
