@@ -31,7 +31,7 @@ void leituraArquivo(FILE *FD, int matriz[][QTD_VERTICES])
             for (int j = 0; j < QTD_VERTICES; j++)
             {
                 fscanf(FD, "%c", &g);
-		if (g < 48 || g > 57)
+		        if (g < 48 || g > 57)
                 {
                     printf("Esta matriz nao esta' consistente!\n");
                     printf("Erro na leitura dos dados. Verifique se a matriz esta' formatada corretamente no arquivo \"%s\"\n", arq);
@@ -169,7 +169,7 @@ int main()
     scanf("%c", &opc); //Usuario digita o caractere de um vertice para dar inicio ao algoritmo
     getchar();         //Limpar buffer do \n
     opc = toupper(opc);
-    if (opc < 65 || opc > 65 + QTD_VERTICES)
+    if (opc < 65 || opc > 65 + QTD_VERTICES-1)
     {
         printf("\nVertice Invalido! Reinicie o programa e tente novamente.\n");
         return -1;
@@ -185,7 +185,7 @@ int main()
     getchar();         //Limpar buffer do \n
     opc = toupper(opc);
 
-    if (opc < 65 || opc > 65 + QTD_VERTICES)
+    if (opc < 65 || opc > 65 + QTD_VERTICES-1)
     {
         printf("\nVertice Invalido! Reinicie o programa e tente novamente.\n");
         return -1;
