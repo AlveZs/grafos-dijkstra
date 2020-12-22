@@ -31,7 +31,7 @@ void leituraArquivo(FILE *FD, int matriz[][QTD_VERTICES])
             for (int j = 0; j < QTD_VERTICES; j++)
             {
                 fscanf(FD, "%c", &g);
-		        if (g < 48 || g > 57)
+		        if (g < '0' || g > '9') //Informa inconsistência na leitura da matriz caso o caracter lido no arquivo não esteja entre zero ou nove.
                 {
                     printf("Esta matriz nao esta' consistente!\n");
                     printf("Erro na leitura dos dados. Verifique se a matriz esta' formatada corretamente no arquivo \"%s\"\n", arq);
