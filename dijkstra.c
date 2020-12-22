@@ -31,6 +31,13 @@ void leituraArquivo(FILE *FD, int matriz[][QTD_VERTICES])
             for (int j = 0; j < QTD_VERTICES; j++)
             {
                 fscanf(FD, "%c", &g);
+		if (g < 48 || g > 57)
+                {
+                    printf("Esta matriz nao esta' consistente!\n");
+                    printf("Erro na leitura dos dados. Verifique se a matriz esta' formatada corretamente no arquivo \"%s\"\n", arq);
+                    fclose(FD);
+                    exit(1);
+                }  
                 matriz[i][j] = g-48; //Armazena na memoria o valor lido do arquivo. "48" representa o inteiro 0 na tabela ASCII
                 fseek(FD, 1, SEEK_CUR);
             }
